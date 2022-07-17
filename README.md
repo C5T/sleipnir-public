@@ -78,7 +78,11 @@ curl \
 Generate 100K test queries:
 
 ```
+# If node.js is installed:
 node sleipner-public/src/gen_example_queries.js >queries.txt
+
+# Alternatively:
+docker run crnt/sleipnir example_queries >queries.txt
 ```
 
 Run a performance test for the first time (against the true OPA with the right policy):
@@ -119,4 +123,14 @@ Run C++ test binaries:
 ./dummy_http                # The "echo server".
 ./manual_policy_impl        # Manual policy implementation.
 ./manual_policy_norun_impl  # HTTP + JSON, no policy eval.
+```
+
+### Transpilation
+
+```
+# The `rego2cc` target generates a complete C++ piece of code.
+# Other targets: `rego2dsl`, `rego2h`.
+GH=https://raw.githubusercontent.com ; \
+curl -s $GH/C5T/asbyrgi/main/tests/rbac_example/self_contained/rbac_example.rego \
+| docker run -i crnt/sleipnir rego2cc rbac allow >transpiled.cc
 ```
