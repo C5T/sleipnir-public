@@ -145,7 +145,7 @@ Since the transpiled sources are also part of the `src/` directory, then can be 
 Or:
 
 ```
-./transpiled --queries queriest.txt
+./transpiled --queries queries.txt
 ./transpiled_strongly_typed --queries queries.txt
 ```
 
