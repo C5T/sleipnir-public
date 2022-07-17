@@ -35,7 +35,7 @@ git clone https://github.com/dkorolev/dperftest
 g++ -O3 -DNDEBUG -pthread dperftest/dperftest.cc -Icurrent -o dpt
 ```
 
-### Helpers
+#### Helpers
 
 ```
 git clone https://github.com/C5T/sleipnir-public
@@ -59,7 +59,7 @@ Push the policy into OPA:
 
 ```
 GH=https://raw.githubusercontent.com ; \
-curl $GH/C5T/asbyrgi/main/tests/rbac_example/self_contained/rbac_example.rego \
+curl -s $GH/C5T/asbyrgi/main/tests/rbac_example/self_contained/rbac_example.rego \
 | curl -X PUT --data-binary @/dev/stdin localhost:8181/v1/policies/test
 ```
 
