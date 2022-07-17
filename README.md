@@ -39,6 +39,9 @@ g++ -O3 -DNDEBUG -pthread dperftest/dperftest.cc -Icurrent -o dpt
 
 ```
 git clone https://github.com/C5T/sleipnir-public
+for i in sleipnir-public/src/*.cc ; do
+  g++ -O3 -DNDEBUG -pthread -std=c++17 -I. $i -o $(basename ${i/.cc/})
+done
 ```
 
 ### Run
@@ -70,4 +73,50 @@ curl \
   -H 'Content-Type: application/json' \
   -d '{"input":{"user":"alice","action":"read","object":"server123"}}' \
   localhost:8181/v1/data/rbac/allow
+```
+
+Generate 100K test queries:
+
+```
+node sleipner-public/src/gen_example_queries.js >queries.txt
+```
+
+Run a performance test for the first time (against a true OPA with the right policy):
+
+```
+./dpt \
+  --url localhost:8181/v1/data/rbac/allow \
+  --queries queries.txt \
+  --write_goldens goldens.txt \
+  --content_type application/json
+```
+
+Next runs, to compare against the goldens too:
+
+```
+./dpt \
+  --url localhost:8181/v1/data/rbac/allow \
+  --queries queries.txt \
+  --goldens goldens.txt \
+  --content_type application/json
+```
+
+Run the Go dummy HTTP server:
+
+```
+go run sleipnir-public/src/dummy_http.go
+```
+
+Run the Go dummy HTTP server ona single CPU core:
+
+```
+GOMAXPROCS=1 go run sleipnir-public/src/dummy_http.go
+```
+
+Run C++ test binaries:
+
+```
+./dummy_http                # The "echo server".
+./manual_policy_impl        # Manual policy implementation.
+./manual_policy_norun_impl  # HTTP + JSON, no policy eval.
 ```
