@@ -81,7 +81,7 @@ Generate 100K test queries:
 node sleipner-public/src/gen_example_queries.js >queries.txt
 ```
 
-Run a performance test for the first time (against a true OPA with the right policy):
+Run a performance test for the first time (against the true OPA with the right policy):
 
 ```
 ./dpt \
