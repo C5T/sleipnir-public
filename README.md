@@ -134,3 +134,19 @@ GH=https://raw.githubusercontent.com ; \
 curl -s $GH/C5T/asbyrgi/main/tests/rbac_example/self_contained/rbac_example.rego \
 | docker run -i crnt/sleipnir rego2cc rbac allow >transpiled.cc
 ```
+
+Since the transpiled sources are also part of the `src/` directory, then can be run with:
+
+```
+./transpiled
+./transpiled_strongly_typed
+```
+
+Or:
+
+```
+./transpiled --queries queriest.txt
+./transpiled_strongly_typed --queries queries.txt
+```
+
+The first two commands start a server on `localhost:8181`, identical to OPA wrt the policy evaluation endpoint.
