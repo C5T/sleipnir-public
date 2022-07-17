@@ -16,7 +16,17 @@ using namespace current::json;
 using namespace current::vt100;
 
 // === INSERT CUSTOM TYPE INSTEAD OF `policy_input_t` IF NEEDED ===
-using policy_input_t = JSONValue;
+CURRENT_STRUCT(OPARequest) {
+  CURRENT_FIELD(user, std::string);
+  CURRENT_FIELD(action, std::string);
+  CURRENT_FIELD(object, std::string);
+};
+
+CURRENT_STRUCT(OPAInput) {
+  CURRENT_FIELD(input, OPARequest);
+};
+
+using policy_input_t = OPAInput;
 // === INSERT CUSTOM TYPE INSTEAD OF `policy_input_t` IF NEEDED ===
 
 DEFINE_uint16(p, 0u, "Set `-p $PORT` to listen on `localhost:$PORT`.");
