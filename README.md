@@ -58,7 +58,8 @@ GOMAXPROCS=1 opa run --server --log-level error
 Push the policy into OPA:
 
 ```
-curl https://raw.githubusercontent.com/C5T/asbyrgi/main/tests/rbac_example/self_contained/rbac_example.rego \
+GH=https://raw.githubusercontent.com ; \
+curl $GH/C5T/asbyrgi/main/tests/rbac_example/self_contained/rbac_example.rego \
 | curl -X PUT --data-binary @/dev/stdin localhost:8181/v1/policies/test
 ```
 
