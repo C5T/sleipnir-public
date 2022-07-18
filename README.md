@@ -138,9 +138,11 @@ curl -s $GH/C5T/asbyrgi/main/tests/rbac_example/self_contained/rbac_example.rego
 Since the transpiled sources are also part of the `src/` directory, then can be run with:
 
 ```
-./transpiled
-./transpiled_strongly_typed
+./transpiled -p 8181 -d
+./transpiled_strongly_typed -p 8181 -d
 ```
+
+The `-p 8181` option makes the binary respond via HTTP in a way identical to OPA. And `-d` stands for "daemonize", to run the HTTP server until terminated; the default behavior is to respond to queries from the standard input, and terminate as the EOF is read.
 
 Or:
 
