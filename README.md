@@ -105,13 +105,13 @@ Next runs, to compare against the goldens too:
   --content_type application/json
 ```
 
-Run the Go dummy HTTP server:
+Run a dummy Go HTTP server:
 
 ```
 go run sleipnir-public/src/dummy_http.go
 ```
 
-Run the Go dummy HTTP server ona single CPU core:
+Run a dummy Go HTTP server on a single CPU core:
 
 ```
 GOMAXPROCS=1 go run sleipnir-public/src/dummy_http.go
@@ -144,11 +144,11 @@ Since the transpiled sources are also part of the `src/` directory, then can be 
 
 The `-p 8181` option makes the binary respond via HTTP in a way identical to OPA. And `-d` stands for "daemonize", to run the HTTP server until terminated; the default behavior is to respond to queries from the standard input, and terminate as the EOF is read.
 
-Or:
+Or, to measure PAPS:
 
 ```
 ./transpiled --queries queries.txt
 ./transpiled_strongly_typed --queries queries.txt
 ```
 
-The first two commands start a server on `localhost:8181`, identical to OPA wrt the policy evaluation endpoint.
+The commands with `-p 8181` start a server on `localhost:8181`, identical to OPA wrt the policy evaluation endpoint.
