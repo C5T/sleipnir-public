@@ -2,6 +2,8 @@
 
 Public demos of high-performance OPA implementation.
 
+Check out [our blog post](https://dimakorolev.substack.com/p/high-performance-opa) on the idea behind this approach and some cool benchmarks 🙂
+
 ## Ubuntu
 
 The examples can be run on Ubuntu. Tested on AWS EC2.
